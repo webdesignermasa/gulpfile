@@ -3,6 +3,7 @@
 const { src, dest, watch, series, parallel } = require('gulp');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
+const sassGlob = require('gulp-sass-glob');
 const sass = require('gulp-sass')(require('sass'));
 
 function htmlCopy() {
@@ -15,6 +16,7 @@ function cssTranspile() {
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>'),
     }))
+    .pipe(sassGlob())
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(dest('dist/css'))
