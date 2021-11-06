@@ -1,6 +1,8 @@
 'use strict';
 
 const { src, dest, watch, series, parallel } = require('gulp');
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
 const sass = require('gulp-sass')(require('sass'));
 
 function htmlCopy() {
@@ -10,8 +12,16 @@ function htmlCopy() {
 
 function cssTranspile() {
   return src('src/sass/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(dest('dist/css'));
+    .pipe(plumber({
+      errorHandler: notify.onError('Error: <%= error.message %>'),
+    }))
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(dest('dist/css'))
+    .pipe(notify({
+      message: 'Compiled Sass',
+      onLast: true,
+    }));
 };
 
 function watchFiles() {
