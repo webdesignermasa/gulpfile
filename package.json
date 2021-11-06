@@ -1,0 +1,11 @@
+{
+  "name": "gulpfile",
+  "version": "1.0.0",
+  "description": "",
+  "author": "masa",
+  "license": "ISC",
+  "main": "index.js",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
