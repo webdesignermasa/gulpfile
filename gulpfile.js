@@ -5,6 +5,8 @@ const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const sassGlob = require('gulp-sass-glob');
 const sass = require('gulp-sass')(require('sass'));
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
 
 function htmlCopy() {
   return src('src/**/*.html')
@@ -18,7 +20,7 @@ function cssTranspile() {
     }))
     .pipe(sassGlob())
     .pipe(sass())
-    .on('error', sass.logError)
+    .pipe(postcss([ autoprefixer() ]))
     .pipe(dest('dist/css'))
     .pipe(notify({
       message: 'Compiled Sass',
