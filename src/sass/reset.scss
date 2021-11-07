@@ -1,0 +1,110 @@
+@use "mixin"as mx;
+
+// ボックスサイジング
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// デフォルトマージンを削除
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+// デフォルトパディングを削除
+ul,
+ol {
+  padding: 0;
+}
+
+// スムーススクロール
+html {
+  scroll-behavior: smooth;
+}
+
+// ボディの高さをキープする
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+// リスト
+ul,
+ol {
+  list-style: none;
+}
+
+// 画像
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+// altが設定されていない画像をぼかす
+img:not([alt]) {
+  filter: blur(10px);
+}
+
+// リンク
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// SP以外では電話番号のリンクを無効化
+a[href^="tel:"] {
+  @include mx.mq('not-sp') {
+    pointer-events: none;
+  }
+}
+
+// フォーム
+input,
+textarea,
+select,
+button {
+  outline: none;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+  appearance: none;
+}
+
+// appearance: none; に相当（IE用）
+select::-ms-expand {
+  display: none;
+}
+
+// テキストエリア右下の大きさ変更を無効化
+textarea {
+  resize: none;
+}
+
+// チェックボックスとラジオボタンは独自に実装する
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+
+// クリックできることがわかるようカーソルの形を変える
+input[type="submit"],
+input[type="button"],
+button {
+  cursor: pointer;
+}
