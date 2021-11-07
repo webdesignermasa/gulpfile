@@ -1,18 +1,24 @@
 # gulpfile
 
 gulpfile.jsとWebサイト用のファイル一式です。
-Dart Sass対応、@import は使用していません。
+Dart Sassに対応し、@use を使用、@import は使用していません。
+Node.jsは v16.13.0 で動作を確認しています。
 
 ## sassフォルダ
 
 sassフォルダの下は
+
 ```
 @use "../../functions" as f;
 @use "../../mixin"as mx;
 ```
+
 として、フォルダごとに @use します。（variablesフォルダ以外）
+
 ---
+
 使用するときは
+
 ```
 .sample {
   font-size: f.rem(24);
@@ -22,19 +28,25 @@ sassフォルダの下は
   }
 }
 ```
+
 のようにネームスペースをつけます。
 
 ## variablesフォルダ
 
 variablesフォルダは
+
 ```
 @use "../../variables/color";
 @use "../../variables/font";
 @use "../../variables/weight";
 ```
+
 として、個別に @use します。
+
 ---
+
 使用するときは
+
 ```
 .sample {
   background: color.$base;
@@ -42,6 +54,7 @@ variablesフォルダは
   color: color.$text;
 }
 ```
+
 のように、ファイル名をネームスペースとして使用します。
 
 ## フォルダ構成
