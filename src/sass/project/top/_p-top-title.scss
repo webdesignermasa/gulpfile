@@ -1,0 +1,15 @@
+@use "../../function"as f;
+@use "../../mixin"as mx;
+
+$gradient: linear-gradient(#e66465, #9198e5);
+
+.p-top-title {
+  background: $gradient;
+  padding: 10px 40px;
+  font-size: f.rem(24);
+  color: white;
+
+  @include mx.mq('pc') {
+    font-size: f.rem(32);
+  }
+}

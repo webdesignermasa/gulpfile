@@ -1,14 +1,5 @@
-@use "function/function"as f;
-
-@import "components/**";
-@import "project/**";
-@import "utility/**";
-
-$gradient: linear-gradient(#e66465, #9198e5);
-
-h1 {
-  background: $gradient;
-  padding: 10px 40px;
-  font-size: f.rem(32);
-  color: white;
-}
+@use "base";
+@use "layout";
+@use "components";
+@use "utility";
+@use "project";
