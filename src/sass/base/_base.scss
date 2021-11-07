@@ -1,6 +1,31 @@
+@use "../function"as f;
+@use "../mixin"as mx;
 @use "../variables/color";
 @use "../variables/font";
 @use "../variables/weight";
+@use "../variables/inner";
+
+// リキッドレイアウト
+html {
+
+  @include mx.mq('sp') {
+    font-size: 16px;
+  }
+
+  // リキッドレイアウト（タブレット）
+  @include mx.mq('tab') {
+    font-size: f.vw(16, inner.$width);
+  }
+
+  @include mx.mq('pc') {
+    font-size: 16px;
+  }
+
+  // リキッドレイアウト（特に小さいSP）
+  @media screen and (max-width: 374) {
+    font-size: f.vw(16, 375);
+  }
+}
 
 body {
   background-color: color.$base;
