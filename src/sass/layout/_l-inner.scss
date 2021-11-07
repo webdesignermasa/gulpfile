@@ -1,0 +1,22 @@
+@use "../function"as f;
+@use "../mixin"as mx;
+@use "../variables/inner";
+
+.l-inner {
+  width: 100%;
+  padding-right: inner.$padding-sp;
+  padding-left: inner.$padding-sp;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include mx.mq('tab') {
+    padding-right: inner.$padding-tab;
+    padding-left: inner.$padding-tab;
+  }
+
+  @include mx.mq('pc') {
+    max-width: inner.$width + f.strip-unit(inner.$padding-pc) * 2;
+    padding-right: inner.$padding-pc;
+    padding-left: inner.$padding-pc;
+  }
+}
