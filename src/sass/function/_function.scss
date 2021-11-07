@@ -1,0 +1,26 @@
+@use "sass:math";
+
+// 数値のみを取り出す
+// strip-unit(16px) => 16
+// strip-unit(16) => 16
+@function strip-unit($number) {
+  @if type-of($number)=='number'and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// pxをremに変換する
+// rem(16) => 1rem
+// rem(16px) => 1rem
+@function rem($px) {
+  @return math.div(strip-unit($px), 16) * 1rem;
+}
+
+// pxをvwに変換する
+// vw(512, 1024) => 50vw
+// vw(512px, 1024px) => 50vw
+@function vw($px, $viewport-width) {
+  @return math.div(strip-unit($px), strip-unit($viewport-width)) * 100vw;
+}
