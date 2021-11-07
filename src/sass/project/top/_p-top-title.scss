@@ -1,5 +1,8 @@
 @use "../../function"as f;
 @use "../../mixin"as mx;
+@use "../../variables/color";
+@use "../../variables/font";
+@use "../../variables/weight";
 
 $gradient: linear-gradient(#e66465, #9198e5);
 
@@ -7,7 +10,8 @@ $gradient: linear-gradient(#e66465, #9198e5);
   background: $gradient;
   padding: 10px 40px;
   font-size: f.rem(24);
-  color: white;
+  font-weight: weight.$bold;
+  color: color.$white;
 
   @include mx.mq('pc') {
     font-size: f.rem(32);

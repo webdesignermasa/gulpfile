@@ -1,0 +1,10 @@
+@use "../variables/color";
+@use "../variables/font";
+@use "../variables/weight";
+
+body {
+  background-color: color.$base;
+  font-family: font.$base;
+  font-weight: weight.$normal;
+  color: color.$text;
+}
