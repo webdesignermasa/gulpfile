@@ -66,6 +66,7 @@ variablesフォルダは
 │   ├── css
 │   │   ├── reset.css
 │   │   └── style.css
+│   ├── fonts
 │   ├── img
 │   ├── index.html
 │   └── js
@@ -74,6 +75,7 @@ variablesフォルダは
 ├── gulpfile.js
 ├── package.json
 └── src
+    ├── fonts
     ├── img
     ├── index.html
     ├── js

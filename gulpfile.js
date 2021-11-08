@@ -113,7 +113,17 @@ function imageCompress() {
     }));
 }
 
-// ブラウザのオートリロード初期化する
+// フォントをコピーする
+function fontCopy() {
+  return src('src/fonts/**/*')
+    .pipe(dest('dist/fonts'))
+    .pipe(notify({
+      message: 'Copied Fonts',
+      onLast: true,
+    }));
+}
+
+// ブラウザのオートリロードを初期化する
 function browserSyncInit() {
   browserSync.init({
     server: {
@@ -134,6 +144,7 @@ function watchFiles() {
   watch('src/sass/**/*.scss', series(cssTranspile, browserSyncReload));
   watch('src/js/**/*.js', series(jsTranspile, browserSyncReload));
   watch('src/img/**/*', series(imageCompress, browserSyncReload));
+  watch('src/fonts/**/*', series(fontCopy, browserSyncReload));
 }
 
 // Gulpタスク
@@ -141,14 +152,15 @@ exports.html = htmlCopy;
 exports.css = cssTranspile;
 exports.js = jsTranspile;
 exports.img = imageCompress;
+exports.font = fontCopy;
 exports.imgAll = series(
   imageClean, imageCompress
 );
 exports.build = series(
-  htmlCopy, cssTranspile, jsTranspile, imageCompress
+  htmlCopy, cssTranspile, jsTranspile, imageCompress, fontCopy
 );
 exports.watch = watchFiles;
 exports.default = series(
-  htmlCopy, cssTranspile, jsTranspile, imageCompress,
+  htmlCopy, cssTranspile, jsTranspile, imageCompress, fontCopy,
   parallel(browserSyncInit, watchFiles)
 );
