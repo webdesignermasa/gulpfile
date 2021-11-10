@@ -9,25 +9,16 @@
 
 // デフォルトマージンを削除
 body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+h1, h2, h3, h4, h5, h6,
 p,
-ul,
-ol,
-dl,
-dd,
+ul, ol, dl, dd,
 figure,
 blockquote {
   margin: 0;
 }
 
 // デフォルトパディングを削除
-ul,
-ol {
+ul, ol {
   padding: 0;
 }
 
@@ -39,12 +30,15 @@ html {
 // ボディの高さをキープする
 body {
   min-height: 100vh;
-  line-height: 1.5;
+}
+
+// 行の高さをリセット
+body {
+  line-height: 1;
 }
 
 // リスト
-ul,
-ol {
+ul, ol {
   list-style: none;
 }
 
