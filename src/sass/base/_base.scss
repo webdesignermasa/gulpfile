@@ -1,5 +1,5 @@
-@use "../functions"as f;
-@use "../mixin"as mx;
+@use "../functions" as f;
+@use "../mixin" as mx;
 @use "../variables/color";
 @use "../variables/font";
 @use "../variables/weight";
@@ -8,16 +8,16 @@
 // リキッドレイアウト
 html {
 
-  @include mx.mq('sp') {
+  @include mx.mq("sp") {
     font-size: 16px;
   }
 
   // リキッドレイアウト（タブレット）
-  @include mx.mq('tab') {
+  @include mx.mq("tab") {
     font-size: f.vw(16, inner.$width);
   }
 
-  @include mx.mq('pc') {
+  @include mx.mq("pc") {
     font-size: 16px;
   }
 

@@ -1,4 +1,4 @@
-@use "mixin"as mx;
+@use "mixin" as mx;
 
 // ボックスサイジング
 *,
@@ -68,7 +68,7 @@ a {
 
 // SP以外では電話番号のリンクを無効化
 a[href^="tel:"] {
-  @include mx.mq('not-sp') {
+  @include mx.mq("not-sp") {
     pointer-events: none;
   }
 }

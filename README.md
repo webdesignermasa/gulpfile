@@ -10,7 +10,7 @@ sassフォルダの下は
 
 ```
 @use "../../functions" as f;
-@use "../../mixin"as mx;
+@use "../../mixin" as mx;
 ```
 
 として、フォルダごとに @use します。（variablesフォルダ以外）
@@ -23,7 +23,7 @@ sassフォルダの下は
 .sample {
   font-size: f.rem(24);
 
-  @include mx.mq('pc') {
+  @include mx.mq("pc") {
     font-size: f.rem(32);
   }
 }

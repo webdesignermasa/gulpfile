@@ -1,5 +1,5 @@
-@use "../functions"as f;
-@use "../mixin"as mx;
+@use "../functions" as f;
+@use "../mixin" as mx;
 @use "../variables/inner";
 
 .l-inner {
@@ -9,12 +9,12 @@
   margin-right: auto;
   margin-left: auto;
 
-  @include mx.mq('tab') {
+  @include mx.mq("tab") {
     padding-right: inner.$padding-tab;
     padding-left: inner.$padding-tab;
   }
 
-  @include mx.mq('pc') {
+  @include mx.mq("pc") {
     max-width: inner.$width + f.strip-unit(inner.$padding-pc) * 2;
     padding-right: inner.$padding-pc;
     padding-left: inner.$padding-pc;

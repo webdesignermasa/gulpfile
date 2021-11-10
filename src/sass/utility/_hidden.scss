@@ -1,9 +1,9 @@
-@use "../mixin"as mx;
+@use "../mixin" as mx;
 
 .u-sp-only {
   display: block;
 
-  @include mx.mq('not-sp') {
+  @include mx.mq("not-sp") {
     display: none;
   }
 }
@@ -11,7 +11,7 @@
 .u-sp-hidden {
   display: none;
 
-  @include mx.mq('not-sp') {
+  @include mx.mq("not-sp") {
     display: block;
   }
 }
@@ -19,7 +19,7 @@
 .u-pc-only {
   display: none;
 
-  @include mx.mq('pc') {
+  @include mx.mq("pc") {
     display: block;
   }
 }
@@ -27,7 +27,7 @@
 .u-pc-hidden {
   display: block;
 
-  @include mx.mq('pc') {
+  @include mx.mq("pc") {
     display: none;
   }
 }
