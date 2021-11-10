@@ -36,6 +36,7 @@ sassフォルダの下は
 variablesフォルダは
 
 ```
+@use "../../variables/z-index" as z;
 @use "../../variables/color";
 @use "../../variables/font";
 @use "../../variables/weight";
@@ -49,7 +50,9 @@ variablesフォルダは
 
 ```
 .sample {
+  z-index: z.$sample;
   background: color.$base;
+  font-family: font.$base;
   font-weight: weight.$bold;
   color: color.$text;
 }
@@ -109,5 +112,6 @@ variablesフォルダは
             ├── _color.scss
             ├── _font.scss
             ├── _inner.scss
-            └── _weight.scss
+            ├── _weight.scss
+            └── _z-index.scss
 ```
