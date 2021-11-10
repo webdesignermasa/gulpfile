@@ -27,9 +27,19 @@ html {
   }
 }
 
+// 基本となる色とフォント
 body {
   background-color: color.$base;
   font-family: font.$base;
   font-weight: weight.$normal;
   color: color.$text;
+}
+
+// リンクホバー時に透過する
+a {
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
