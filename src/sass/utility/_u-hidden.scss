@@ -1,7 +1,6 @@
 @use "../mixin" as mx;
 
 .u-sp-only {
-  display: block;
 
   @include mx.mq("not-sp") {
     display: none;
@@ -9,23 +8,20 @@
 }
 
 .u-sp-hidden {
-  display: none;
 
-  @include mx.mq("not-sp") {
-    display: block;
+  @include mx.mq("sp") {
+    display: none;
   }
 }
 
 .u-pc-only {
-  display: none;
 
-  @include mx.mq("pc") {
-    display: block;
+  @include mx.mq("not-pc") {
+    display: none;
   }
 }
 
 .u-pc-hidden {
-  display: block;
 
   @include mx.mq("pc") {
     display: none;
