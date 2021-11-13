@@ -35,6 +35,12 @@ body {
   color: color.$text;
 }
 
+// スクロール禁止
+html.is-fixed,
+body.is-fixed {
+  overflow: hidden;
+}
+
 // リンクホバー時に透過する
 a {
   transition: 0.3s;

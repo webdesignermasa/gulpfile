@@ -1,0 +1,16 @@
+.c-header {
+  height: 72px;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.c-header__inner {
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-header__logo {
+  font-size: 32px;
+}
