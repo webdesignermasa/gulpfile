@@ -36,6 +36,7 @@ const destDir = 'dist';
 // 各ファイルの格納フォルダ
 const srcPath = {
   html:  srcDir + '/**/*.html',
+  php:   srcDir + '/**/*.php',
   sass:  srcDir + '/sass/**/*.scss',
   js:    srcDir + '/js/**/*.js',
   img:   srcDir + '/img/**/*',
@@ -44,6 +45,7 @@ const srcPath = {
 
 const destPath = {
   html:  destDir,
+  php:   destDir,
   css:   destDir + '/css',
   js:    destDir + '/js',
   img:   destDir + '/img',
@@ -56,6 +58,16 @@ function htmlCopy() {
     .pipe(dest(destPath.html))
     .pipe(notify({
       message: 'Copied HTML',
+      onLast: true,
+    }));
+}
+
+// PHPをコピーする
+function phpCopy() {
+  return src(srcPath.php)
+    .pipe(dest(destPath.php))
+    .pipe(notify({
+      message: 'Copied PHP',
       onLast: true,
     }));
 }
@@ -162,6 +174,7 @@ function browserSyncReload(callback) {
 // ファイルの変更を監視する
 function watchFiles() {
   watch(srcPath.html,  series(htmlCopy, browserSyncReload));
+  watch(srcPath.php,  series(phpCopy, browserSyncReload));
   watch(srcPath.sass,  series(cssTranspile, browserSyncReload));
   watch(srcPath.js,    series(jsTranspile, browserSyncReload));
   watch(srcPath.img,   series(imageCompress, browserSyncReload));
@@ -170,6 +183,7 @@ function watchFiles() {
 
 // Gulpタスク
 exports.html = htmlCopy;
+exports.php = phpCopy;
 exports.css = cssTranspile;
 exports.js = jsTranspile;
 exports.img = imageCompress;
@@ -178,10 +192,10 @@ exports.imgAll = series(
   imageClean, imageCompress
 );
 exports.build = series(
-  htmlCopy, cssTranspile, jsTranspile, imageCompress, fontCopy
+  htmlCopy, phpCopy, cssTranspile, jsTranspile, imageCompress, fontCopy
 );
 exports.watch = watchFiles;
 exports.default = series(
-  htmlCopy, cssTranspile, jsTranspile, imageCompress, fontCopy,
+  htmlCopy, phpCopy, cssTranspile, jsTranspile, imageCompress, fontCopy,
   parallel(browserSyncInit, watchFiles)
 );
