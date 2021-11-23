@@ -29,10 +29,31 @@ const imageminSvgo = require('imagemin-svgo');
 // ブラウザオートリロード
 const browserSync = require('browser-sync').create();
 
+// 基点となるフォルダ
+const srcDir = 'src';
+const destDir = 'dist';
+
+// 各ファイルの格納フォルダ
+const srcPath = {
+  html:  srcDir + '/**/*.html',
+  sass:  srcDir + '/sass/**/*.scss',
+  js:    srcDir + '/js/**/*.js',
+  img:   srcDir + '/img/**/*',
+  fonts: srcDir + '/fonts/**/*',
+};
+
+const destPath = {
+  html:  destDir,
+  css:   destDir + '/css',
+  js:    destDir + '/js',
+  img:   destDir + '/img',
+  fonts: destDir + '/fonts',
+};
+
 // HTMLをコピーする
 function htmlCopy() {
-  return src('src/**/*.html')
-    .pipe(dest('dist'))
+  return src(srcPath.html)
+    .pipe(dest(destPath.html))
     .pipe(notify({
       message: 'Copied HTML',
       onLast: true,
@@ -41,14 +62,14 @@ function htmlCopy() {
 
 // Sassをコンパイルする
 function cssTranspile() {
-  return src('src/sass/**/*.scss')
+  return src(srcPath.sass)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>'),
     }))
     .pipe(sassGlob())
     .pipe(sass())
     .pipe(postcss([ autoprefixer() ]))
-    .pipe(dest('dist/css'))
+    .pipe(dest(destPath.css))
     .pipe(notify({
       message: 'Compiled Sass',
       onLast: true,
@@ -57,19 +78,19 @@ function cssTranspile() {
 
 // JavaScriptをコンパイル＆圧縮（難読化）する
 function jsTranspile() {
-  return src('src/js/**/*.js')
+  return src(srcPath.js)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>'),
     }))
     .pipe(babel({
       presets: ['@babel/preset-env']
     }))
-    .pipe(dest('dist/js'))
+    .pipe(dest(destPath.js))
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js',
     }))
-    .pipe(dest('dist/js'))
+    .pipe(dest(destPath.js))
     .pipe(notify({
       message: 'Compiled JavaScript',
       onLast: true,
@@ -78,7 +99,7 @@ function jsTranspile() {
 
 // 画像を削除する
 function imageClean() {
-  return del(['dist/img'])
+  return del([destPath.img])
     .pipe(notify({
       message: 'Deleted Images',
       onLast: true,
@@ -87,7 +108,7 @@ function imageClean() {
 
 // 画像を圧縮する
 function imageCompress() {
-  return src('src/img/**/*', { since: lastRun(imageCompress) })
+  return src(srcPath.img, { since: lastRun(imageCompress) })
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>'),
     }))
@@ -106,7 +127,7 @@ function imageCompress() {
       verbose: true
     }
     ))
-    .pipe(dest('dist/img'))
+    .pipe(dest(destPath.img))
     .pipe(notify({
       message: 'Compressed Images',
       onLast: true,
@@ -115,8 +136,8 @@ function imageCompress() {
 
 // フォントをコピーする
 function fontCopy() {
-  return src('src/fonts/**/*')
-    .pipe(dest('dist/fonts'))
+  return src(srcPath.fonts)
+    .pipe(dest(destPath.fonts))
     .pipe(notify({
       message: 'Copied Fonts',
       onLast: true,
@@ -127,7 +148,7 @@ function fontCopy() {
 function browserSyncInit() {
   browserSync.init({
     server: {
-      baseDir: 'dist',
+      baseDir: destDir,
     },
   });
 }
@@ -140,11 +161,11 @@ function browserSyncReload(callback) {
 
 // ファイルの変更を監視する
 function watchFiles() {
-  watch('src/**/*.html', series(htmlCopy, browserSyncReload));
-  watch('src/sass/**/*.scss', series(cssTranspile, browserSyncReload));
-  watch('src/js/**/*.js', series(jsTranspile, browserSyncReload));
-  watch('src/img/**/*', series(imageCompress, browserSyncReload));
-  watch('src/fonts/**/*', series(fontCopy, browserSyncReload));
+  watch(srcPath.html,  series(htmlCopy, browserSyncReload));
+  watch(srcPath.sass,  series(cssTranspile, browserSyncReload));
+  watch(srcPath.js,    series(jsTranspile, browserSyncReload));
+  watch(srcPath.img,   series(imageCompress, browserSyncReload));
+  watch(srcPath.fonts, series(fontCopy, browserSyncReload));
 }
 
 // Gulpタスク
