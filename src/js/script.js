@@ -22,6 +22,19 @@ jQuery(function($) {
     }
   });
 
+  // スムーススクロール
+  $('a').click(function() {
+    let target = $(this).attr('href');
+
+    if (!target.startsWith('#')) {
+      return true;
+    }
+
+    let position = $(target).offset().top;
+    $('body, html').animate({ scrollTop: position }, 300);
+    return false;
+  });
+
   // ページトップボタン
   pageTop.click(function() {
     $('body, html').animate({ scrollTop: 0 }, 300);
