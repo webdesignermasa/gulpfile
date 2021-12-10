@@ -1,5 +1,11 @@
 jQuery(function($) {
 
+  // 変数定義
+  const pageTop = $('.js-page-top');
+
+  // 初期化
+  pageTop.hide();
+
   // ハンバーガーメニュー
   $('.js-burger-btn').click(function() {
     $('.js-burger-btn').toggleClass('is-open');
@@ -13,6 +19,21 @@ jQuery(function($) {
       });
     } else {
       $(window).off('.noScroll');
+    }
+  });
+
+  // ページトップボタン
+  pageTop.click(function() {
+    $('body, html').animate({ scrollTop: 0 }, 300);
+    return false;
+  });
+
+  // スクロール位置による表示の切り替え
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > $('.js-first-view').height()) {
+      pageTop.fadeIn();
+    } else {
+      pageTop.fadeOut();
     }
   });
 });
