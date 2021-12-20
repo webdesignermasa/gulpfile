@@ -29,9 +29,20 @@ const imageminSvgo = require('imagemin-svgo');
 // ブラウザオートリロード
 const browserSync = require('browser-sync').create();
 
+// OS・パス
+const os = require('os');
+const path = require('path');
+
+// WordPress
+const wpSite = undefined;
+const wpTheme = path.basename(__dirname);
+const userDir = os.homedir();
+const themeDir = wpSite ? `${userDir}/Local Sites/${wpSite}/app/public/wp-content/themes/${wpTheme}` : undefined;
+console.log(themeDir);
+
 // 基点となるフォルダ
 const srcDir = 'src';
-const destDir = 'dist';
+const destDir = wpSite ? themeDir : 'dist';
 
 // 各ファイルの格納フォルダ
 const srcPath = {
@@ -46,7 +57,7 @@ const srcPath = {
 const destPath = {
   html:  destDir,
   php:   destDir,
-  css:   destDir + '/css',
+  css:   wpSite ? destDir : destDir + '/css',
   js:    destDir + '/js',
   img:   destDir + '/img',
   fonts: destDir + '/fonts',
@@ -158,11 +169,17 @@ function fontCopy() {
 
 // ブラウザのオートリロードを初期化する
 function browserSyncInit() {
-  browserSync.init({
-    server: {
-      baseDir: destDir,
-    },
-  });
+  if (wpSite) {
+    browserSync.init({
+      proxy: `https://${wpSite}.local`,
+    });
+  } else {
+    browserSync.init({
+      server: {
+        baseDir: destDir,
+      },
+    });
+  }
 }
 
 // ブラウザをオートリロードする
