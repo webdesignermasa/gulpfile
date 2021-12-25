@@ -38,7 +38,6 @@ const wpSite = undefined;
 const wpTheme = path.basename(__dirname);
 const userDir = os.homedir();
 const themeDir = wpSite ? `${userDir}/Local Sites/${wpSite}/app/public/wp-content/themes/${wpTheme}` : undefined;
-console.log(themeDir);
 
 // 基点となるフォルダ
 const srcDir = 'src';
@@ -58,9 +57,9 @@ const destPath = {
   html:  destDir,
   php:   destDir,
   css:   wpSite ? destDir : destDir + '/css',
-  js:    destDir + '/js',
-  img:   destDir + '/images',
-  fonts: destDir + '/fonts',
+  js:    wpSite ? destDir + '/assets/js' : destDir + '/js',
+  img:   wpSite ? destDir + '/assets/images' : destDir + '/images',
+  fonts: wpSite ? destDir + '/assets/fonts' : destDir + '/fonts',
 };
 
 // HTMLをコピーする
