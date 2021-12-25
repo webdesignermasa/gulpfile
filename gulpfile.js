@@ -50,7 +50,7 @@ const srcPath = {
   php:   srcDir + '/**/*.php',
   sass:  srcDir + '/sass/**/*.scss',
   js:    srcDir + '/js/**/*.js',
-  img:   srcDir + '/img/**/*',
+  img:   srcDir + '/images/**/*',
   fonts: srcDir + '/fonts/**/*',
 };
 
@@ -59,7 +59,7 @@ const destPath = {
   php:   destDir,
   css:   wpSite ? destDir : destDir + '/css',
   js:    destDir + '/js',
-  img:   destDir + '/img',
+  img:   destDir + '/images',
   fonts: destDir + '/fonts',
 };
 

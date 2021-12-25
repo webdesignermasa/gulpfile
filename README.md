@@ -70,7 +70,7 @@ variablesフォルダは
 │   │   ├── reset.css
 │   │   └── style.css
 │   ├── fonts
-│   ├── img
+│   ├── images
 │   ├── index.html
 │   └── js
 │       ├── script.js
@@ -79,7 +79,7 @@ variablesフォルダは
 ├── package.json
 └── src
     ├── fonts
-    ├── img
+    ├── images
     ├── index.html
     ├── js
     │   └── script.js
