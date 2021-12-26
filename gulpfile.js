@@ -67,8 +67,8 @@ function htmlCopy() {
   return src(srcPath.html)
     .pipe(dest(destPath.html))
     .pipe(notify({
-      "message": "Copied HTML",
-      "onLast": true,
+      message: 'Copied HTML',
+      onLast: true,
     }));
 }
 
@@ -77,8 +77,8 @@ function phpCopy() {
   return src(srcPath.php)
     .pipe(dest(destPath.php))
     .pipe(notify({
-      "message": "Copied PHP",
-      "onLast": true,
+      message: 'Copied PHP',
+      onLast: true,
     }));
 }
 
@@ -93,8 +93,8 @@ function cssTranspile() {
     .pipe(postcss([ autoprefixer() ]))
     .pipe(dest(destPath.css))
     .pipe(notify({
-      "message": "Compiled Sass",
-      "onLast": true,
+      message: 'Compiled Sass',
+      onLast: true,
     }));
 };
 
@@ -114,8 +114,8 @@ function jsTranspile() {
     }))
     .pipe(dest(destPath.js))
     .pipe(notify({
-      "message": "Compiled JavaScript",
-      "onLast": true,
+      message: 'Compiled JavaScript',
+      onLast: true,
     }));
 }
 
@@ -123,8 +123,8 @@ function jsTranspile() {
 function imageClean() {
   return del([destPath.img])
     .pipe(notify({
-      "message": "Deleted Images",
-      "onLast": true,
+      message: 'Deleted Image',
+      onLast: true,
     }));
 }
 
@@ -151,8 +151,8 @@ function imageCompress() {
     ))
     .pipe(dest(destPath.img))
     .pipe(notify({
-      "message": "Compressed Images",
-      "onLast": true,
+      message: 'Compressed Images',
+      onLast: true,
     }));
 }
 
@@ -161,8 +161,8 @@ function fontCopy() {
   return src(srcPath.fonts)
     .pipe(dest(destPath.fonts))
     .pipe(notify({
-      "message": "Copied Fonts",
-      "onLast": true,
+      message: 'Copied Fonts',
+      onLast: true,
     }));
 }
 
