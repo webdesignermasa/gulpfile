@@ -2,15 +2,15 @@
 
 // ブレークポイント
 $media-queries: ("sp": "screen and (max-width: 767px)",
-	"tab": "screen and (min-width: 768px) and (max-width: #{inner.$width - 1px})",
-	"pc": "screen and (min-width: #{inner.$width})",
-	"not-sp": "screen and (min-width: 768px)",
-	"not-pc": "screen and (max-width: #{inner.$width - 1px})",
+  "tab": "screen and (min-width: 768px) and (max-width: #{inner.$width - 1px})",
+  "pc": "screen and (min-width: #{inner.$width})",
+  "not-sp": "screen and (min-width: 768px)",
+  "not-pc": "screen and (max-width: #{inner.$width - 1px})",
 );
 
 // メディアクエリ
 @mixin mq($media: "sp") {
-	@media #{map-get($media-queries, $media)} {
-		@content;
-	}
+  @media #{map-get($media-queries, $media)} {
+    @content;
+  }
 }

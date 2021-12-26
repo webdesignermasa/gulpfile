@@ -8,44 +8,44 @@
 // リキッドレイアウト
 html {
 
-	@include mx.mq("sp") {
-		font-size: 16px;
-	}
+  @include mx.mq("sp") {
+    font-size: 16px;
+  }
 
-	// リキッドレイアウト（タブレット）
-	@include mx.mq("tab") {
-		font-size: f.vw(16, inner.$width);
-	}
+  // リキッドレイアウト（タブレット）
+  @include mx.mq("tab") {
+    font-size: f.vw(16, inner.$width);
+  }
 
-	@include mx.mq("pc") {
-		font-size: 16px;
-	}
+  @include mx.mq("pc") {
+    font-size: 16px;
+  }
 
-	// リキッドレイアウト（特に小さいSP）
-	@media screen and (max-width: 374) {
-		font-size: f.vw(16, 375);
-	}
+  // リキッドレイアウト（特に小さいSP）
+  @media screen and (max-width: 374) {
+    font-size: f.vw(16, 375);
+  }
 }
 
 // 基本となる色とフォント
 body {
-	background-color: color.$base;
-	font-family: font.$base;
-	font-weight: weight.$normal;
-	color: color.$text;
+  background-color: color.$base;
+  font-family: font.$base;
+  font-weight: weight.$normal;
+  color: color.$text;
 }
 
 // スクロール禁止
 html.is-fixed,
 body.is-fixed {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 // リンクホバー時に透過する
 a {
-	transition: 0.3s;
+  transition: 0.3s;
 
-	&:hover {
-		opacity: 0.7;
-	}
+  &:hover {
+    opacity: 0.7;
+  }
 }
