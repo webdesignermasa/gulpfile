@@ -1,10 +1,12 @@
+@use "../variables/color";
+
 .c-burger-btn {
   width: 44px;
   height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: color.$white;
 }
 
 .c-burger-btn__bars {
@@ -12,7 +14,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background-color: #000000;
+  background-color: color.$black;
   transition: 0.3s;
 
   &::before,
@@ -41,7 +43,7 @@
   &::before,
   &::after {
     top: 0;
-    background-color: #000000;
+    background-color: color.$black;
   }
 
   &::before {
