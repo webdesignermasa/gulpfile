@@ -21,11 +21,11 @@ sassフォルダの下は
 
 ```
 .sample {
-  font-size: f.rem(24);
+	font-size: f.rem(24);
 
-  @include mx.mq("pc") {
-    font-size: f.rem(32);
-  }
+	@include mx.mq("pc") {
+		font-size: f.rem(32);
+	}
 }
 ```
 
@@ -50,11 +50,11 @@ variablesフォルダは
 
 ```
 .sample {
-  z-index: z.$sample;
-  background: color.$base;
-  font-family: font.$base;
-  font-weight: weight.$bold;
-  color: color.$text;
+	z-index: z.$sample;
+	background: color.$base;
+	font-family: font.$base;
+	font-weight: weight.$bold;
+	color: color.$text;
 }
 ```
 
@@ -78,40 +78,40 @@ variablesフォルダは
 ├── gulpfile.js
 ├── package.json
 └── src
-    ├── fonts
-    ├── images
-    ├── index.html
-    ├── js
-    │   └── script.js
-    └── sass
-        ├── base
-        │   ├── _base.scss
-        │   └── _index.scss
-        ├── components
-        │   └── _index.scss
-        ├── functions
-        │   ├── _functions.scss
-        │   └── _index.scss
-        ├── layout
-        │   ├── _index.scss
-        │   └── _l-inner.scss
-        ├── mixin
-        │   ├── _index.scss
-        │   └── _media-query.scss
-        ├── project
-        │   ├── _index.scss
-        │   └── top
-        │       ├── _index.scss
-        │       └── _p-top-title.scss
-        ├── reset.scss
-        ├── style.scss
-        ├── utility
-        │   ├── _hidden.scss
-        │   └── _index.scss
-        └── variables
-            ├── _color.scss
-            ├── _font.scss
-            ├── _inner.scss
-            ├── _weight.scss
-            └── _z-index.scss
+		├── fonts
+		├── images
+		├── index.html
+		├── js
+		│   └── script.js
+		└── sass
+				├── base
+				│   ├── _base.scss
+				│   └── _index.scss
+				├── components
+				│   └── _index.scss
+				├── functions
+				│   ├── _functions.scss
+				│   └── _index.scss
+				├── layout
+				│   ├── _index.scss
+				│   └── _l-inner.scss
+				├── mixin
+				│   ├── _index.scss
+				│   └── _media-query.scss
+				├── project
+				│   ├── _index.scss
+				│   └── top
+				│       ├── _index.scss
+				│       └── _p-top-title.scss
+				├── reset.scss
+				├── style.scss
+				├── utility
+				│   ├── _hidden.scss
+				│   └── _index.scss
+				└── variables
+						├── _color.scss
+						├── _font.scss
+						├── _inner.scss
+						├── _weight.scss
+						└── _z-index.scss
 ```

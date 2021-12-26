@@ -2,28 +2,28 @@
 
 .u-sp-only {
 
-  @include mx.mq("not-sp") {
-    display: none;
-  }
+	@include mx.mq("not-sp") {
+		display: none;
+	}
 }
 
 .u-sp-hidden {
 
-  @include mx.mq("sp") {
-    display: none;
-  }
+	@include mx.mq("sp") {
+		display: none;
+	}
 }
 
 .u-pc-only {
 
-  @include mx.mq("not-pc") {
-    display: none;
-  }
+	@include mx.mq("not-pc") {
+		display: none;
+	}
 }
 
 .u-pc-hidden {
 
-  @include mx.mq("pc") {
-    display: none;
-  }
+	@include mx.mq("pc") {
+		display: none;
+	}
 }
