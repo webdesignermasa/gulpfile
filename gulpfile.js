@@ -45,21 +45,23 @@ const destDir = wpSite ? themeDir : 'dist';
 
 // 各ファイルの格納フォルダ
 const srcPath = {
-  html:  srcDir + '/**/*.html',
-  php:   srcDir + '/**/*.php',
-  sass:  srcDir + '/sass/**/*.scss',
-  js:    srcDir + '/js/**/*.js',
-  img:   srcDir + '/images/**/*',
-  fonts: srcDir + '/fonts/**/*',
+  html:       srcDir + '/**/*.html',
+  php:        srcDir + '/**/*.php',
+  screenshot: srcDir + '/screenshot.*',
+  sass:       srcDir + '/sass/**/*.scss',
+  js:         srcDir + '/js/**/*.js',
+  img:        srcDir + '/images/**/*',
+  fonts:      srcDir + '/fonts/**/*',
 };
 
 const destPath = {
-  html:  destDir,
-  php:   destDir,
-  css:   wpSite ? destDir : destDir + '/css',
-  js:    wpSite ? destDir + '/assets/js' : destDir + '/js',
-  img:   wpSite ? destDir + '/assets/images' : destDir + '/images',
-  fonts: wpSite ? destDir + '/assets/fonts' : destDir + '/fonts',
+  html:       destDir,
+  php:        destDir,
+  screenshot: destDir,
+  css:        wpSite ? destDir : destDir + '/css',
+  js:         wpSite ? destDir + '/assets/js' : destDir + '/js',
+  img:        wpSite ? destDir + '/assets/images' : destDir + '/images',
+  fonts:      wpSite ? destDir + '/assets/fonts' : destDir + '/fonts',
 };
 
 // HTMLをコピーする
@@ -78,6 +80,16 @@ function phpCopy() {
     .pipe(dest(destPath.php))
     .pipe(notify({
       message: 'Copied PHP',
+      onLast: true,
+    }));
+}
+
+// テーマのスクリーンショットをコピーする
+function screenshotCopy() {
+  return src(srcPath.screenshot)
+    .pipe(dest(destPath.screenshot))
+    .pipe(notify({
+      message: 'Copied Screenshot',
       onLast: true,
     }));
 }
@@ -189,17 +201,19 @@ function browserSyncReload(callback) {
 
 // ファイルの変更を監視する
 function watchFiles() {
-  watch(srcPath.html,  series(htmlCopy, browserSyncReload));
-  watch(srcPath.php,  series(phpCopy, browserSyncReload));
-  watch(srcPath.sass,  series(cssTranspile, browserSyncReload));
-  watch(srcPath.js,    series(jsTranspile, browserSyncReload));
-  watch(srcPath.img,   series(imageCompress, browserSyncReload));
-  watch(srcPath.fonts, series(fontCopy, browserSyncReload));
+  watch(srcPath.html,       series(htmlCopy, browserSyncReload));
+  watch(srcPath.php,        series(phpCopy, browserSyncReload));
+  watch(srcPath.screenshot, series(screenshotCopy, browserSyncReload))
+  watch(srcPath.sass,       series(cssTranspile, browserSyncReload));
+  watch(srcPath.js,         series(jsTranspile, browserSyncReload));
+  watch(srcPath.img,        series(imageCompress, browserSyncReload));
+  watch(srcPath.fonts,      series(fontCopy, browserSyncReload));
 }
 
 // Gulpタスク
 exports.html = htmlCopy;
 exports.php = phpCopy;
+exports.screenshot = screenshotCopy;
 exports.css = cssTranspile;
 exports.js = jsTranspile;
 exports.img = imageCompress;
@@ -208,10 +222,10 @@ exports.imgAll = series(
   imageClean, imageCompress
 );
 exports.build = series(
-  htmlCopy, phpCopy, cssTranspile, jsTranspile, imageCompress, fontCopy
+  htmlCopy, phpCopy, screenshotCopy, cssTranspile, jsTranspile, imageCompress, fontCopy
 );
 exports.watch = watchFiles;
 exports.default = series(
-  htmlCopy, phpCopy, cssTranspile, jsTranspile, imageCompress, fontCopy,
+  htmlCopy, phpCopy, screenshotCopy, cssTranspile, jsTranspile, imageCompress, fontCopy,
   parallel(browserSyncInit, watchFiles)
 );
