@@ -22,6 +22,17 @@ jQuery(function($) {
     }
   });
 
+  // ハンバーガーメニューリンククリック
+  $('.js-burger-link').click(function() {
+    $('.js-burger-btn').removeClass('is-open');
+    $('.js-burger-menu').removeClass('is-open');
+    $('html, body').removeClass('is-fixed');
+
+    $(window).off('.noScroll');
+
+    return true;
+  });
+
   // スムーススクロール
   $('a').click(function() {
     let target = $(this).attr('href');
