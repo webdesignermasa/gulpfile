@@ -9,26 +9,17 @@
 
 // デフォルトマージンを削除
 body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+h1, h2, h3, h4, h5, h6,
 p,
-ul,
-ol,
-dl,
-dd,
+ul, ol, dl, dd,
+hr,
 figure,
 blockquote {
   margin: 0;
 }
 
 // デフォルトパディングを削除
-ul,
-ol,
-button {
+ul, ol, button {
   padding: 0;
 }
 
@@ -50,6 +41,11 @@ body {
 // リスト
 ul, ol {
   list-style: none;
+}
+
+// 区切り線
+hr {
+  border: none;
 }
 
 // 画像
